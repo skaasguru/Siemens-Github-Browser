@@ -11,6 +11,8 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterConten
 
   @Output() profileNameClicked: EventEmitter<string> = new EventEmitter<string>();
 
+  someHtmlText!: string;
+
   notifyParent() {
     this.profileNameClicked.emit(this.profile.name);
   }
@@ -23,6 +25,7 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterConten
   // 2. Self - Called on initialization i.e., After the First Change Detection cycle.
   ngOnInit(): void {
     console.log((new Date()).toString(), 'ngOnInit');
+    this.someHtmlText = `<h2>From API</h2>`;
   }
 
   // 3. Self - Developer’s custom change detection

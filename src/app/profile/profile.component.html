@@ -7,6 +7,7 @@
             <div class="d-flex flex-column">
                 <a (click)="notifyParent()" [class]="'text-' + 'reset'">
                     <h1>{{ profile.name }}</h1>
+                    <div>{{ someHtmlText }}</div>
                 </a>
                 <p [style.color]="'red'">Type: {{ profile.type }}</p>
                 <p>Location: {{ profile.location || '-' }}</p>
