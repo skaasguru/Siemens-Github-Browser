@@ -7,11 +7,11 @@
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search">
+                    aria-label="Search" #searchInput>
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-warning">Search</button>
+                <button type="button" class="btn btn-warning" (click)="searchSubmitted.emit(searchInput.value)">Search</button>
             </div>
         </div>
     </div>

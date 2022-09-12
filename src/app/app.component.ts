@@ -45,4 +45,8 @@ export class AppComponent {
   eventReceivedFromChild(event: string) {
     alert(`You've clicked the Profile with the name "${event}"`);
   }
+
+  eventReceivedFromSearch(event: string) {
+    alert(`You've searched for "${event}"`);
+  }
 }
