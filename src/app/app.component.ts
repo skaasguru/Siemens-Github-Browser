@@ -41,4 +41,8 @@ export class AppComponent {
     "created_at": "2009-10-13T22:16:19Z",
     "updated_at": "2022-06-29T18:58:06Z"
   }`);
+
+  eventReceivedFromChild(event: string) {
+    alert(`You've clicked the Profile with the name "${event}"`);
+  }
 }

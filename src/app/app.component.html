@@ -1,5 +1,5 @@
 <div class="d-flex flex-column min-vh-100">
     <app-header></app-header>
-    <app-profile [profile]="angularsProfile"></app-profile>
+    <app-profile [profile]="angularsProfile" (profileNameClicked)="eventReceivedFromChild($event)"></app-profile>
     <app-footer class="mt-auto"></app-footer>
 </div>

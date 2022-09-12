@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Profile } from '../types';
 
 @Component({
@@ -8,4 +8,10 @@ import { Profile } from '../types';
 })
 export class ProfileComponent {
   @Input() profile!: Profile;
+
+  @Output() profileNameClicked: EventEmitter<string> = new EventEmitter<string>();
+
+  notifyParent() {
+    this.profileNameClicked.emit(this.profile.name);
+  }
 }
