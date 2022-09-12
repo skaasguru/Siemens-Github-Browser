@@ -1,14 +1,14 @@
 <div class="container p-3 rounded shadow" id="{{ profile.id }}">
     <div class="row mt-3">
         <div class="col-2">
-            <img [src]="profile.avatar_url" class="img-thumbnail rounded">
+            <img [src]="profile.avatar_url" class="img-thumbnail rounded" title="{{ profile.login }}">
         </div>
         <div class="col-3">
             <div class="d-flex flex-column">
-                <a (click)="notifyParent()" class="text-reset">
+                <a (click)="notifyParent()" [class]="'text-' + 'reset'">
                     <h1>{{ profile.name }}</h1>
                 </a>
-                <p>Type: {{ profile.type }}</p>
+                <p [style.color]="'red'">Type: {{ profile.type }}</p>
                 <p>Location: {{ profile.location || '-' }}</p>
                 <p>Email: {{ profile.email || '-' }}</p>
             </div>
