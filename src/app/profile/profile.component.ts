@@ -1,4 +1,5 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, Sanitizer, SimpleChanges } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Profile } from '../types';
 
 @Component({
@@ -11,7 +12,9 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterConten
 
   @Output() profileNameClicked: EventEmitter<string> = new EventEmitter<string>();
 
-  someHtmlText!: string;
+  someHtmlText!: SafeHtml;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   notifyParent() {
     this.profileNameClicked.emit(this.profile.name);
@@ -25,7 +28,7 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterConten
   // 2. Self - Called on initialization i.e., After the First Change Detection cycle.
   ngOnInit(): void {
     console.log((new Date()).toString(), 'ngOnInit');
-    this.someHtmlText = `<h2>From API</h2>`;
+    this.someHtmlText = this.sanitizer.bypassSecurityTrustHtml(`<h6>From API</h6>`);
   }
 
   // 3. Self - Developer’s custom change detection
