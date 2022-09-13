@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() searchSubmitted: EventEmitter<string> = new EventEmitter<string>();
+  constructor(public commonService: CommonService) {}
 }

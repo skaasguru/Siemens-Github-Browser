@@ -7,10 +7,10 @@ import { Profile } from './types';
 })
 export class GithubApiService {
 
-  apiPrefix: string = environment.API_BASE;
+  private apiPrefix: string = environment.API_BASE;
 
-  searchUsersCache: Record<string, Profile[]> = {};
-  listUsersCache: Profile[] = [];
+  private searchUsersCache: Record<string, Profile[]> = {};
+  private listUsersCache: Profile[] = [];
 
   async listUsers(): Promise<Profile[]> {
     if (this.listUsersCache.length > 0) return this.listUsersCache;

@@ -7,5 +7,4 @@ import { Profile } from './types';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  searchKeyword: string | undefined;
 }
