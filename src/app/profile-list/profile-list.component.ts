@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { GithubApiService } from '../github-api.service';
 import { Profile } from '../types';
 
 @Component({
@@ -12,13 +13,19 @@ export class ProfileListComponent implements OnChanges {
 
   profiles: Profile[] = [];
 
+  constructor(private api: GithubApiService) {}
+
   ngOnChanges(): void {
-    const url = this.searchKeyword
-      ? `https://api.github.com/search/users?q=${this.searchKeyword}`
-      : 'https://api.github.com/users';
-    fetch(url)
-      .then(response => response.json())
-      .then(data => this.profiles = this.searchKeyword ? data.items : data);
+    let usersPromise: Promise<Profile[]>;
+    if (this.searchKeyword) {
+      usersPromise = this.api.searchUsers(this.searchKeyword);
+    } else {
+      usersPromise = this.api.listUsers();
+    }
+
+    usersPromise
+      .then(profiles => this.profiles = profiles)
+      .catch(console.error);
   }
 
 }
