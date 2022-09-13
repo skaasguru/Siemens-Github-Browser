@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

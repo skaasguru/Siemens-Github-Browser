@@ -7,11 +7,10 @@
             <div class="d-flex flex-column">
                 <a (click)="notifyParent()" [class]="'text-' + 'reset'">
                     <h1>{{ profile.name }}</h1>
-                    <div [innerHtml]="someHtmlText"></div>
                 </a>
-                <p [style.color]="'red'">Type: {{ profile.type }}</p>
-                <p>Location: {{ profile.location || '-' }}</p>
-                <p>Email: {{ profile.email || '-' }}</p>
+                <p>Type: {{ profile.type }}</p>
+                <p appHighlight>Location: {{ profile.location || '-' }}</p>
+                <p appHighlight hoverColor="orange">Email: {{ profile.email || '-' }}</p>
             </div>
         </div>
     </div>
