@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HighlightDirective } from './highlight.directive';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
     FooterComponent,
     HighlightDirective,
     ProfileListComponent,
-    ProfileDetailComponent
+    ProfileDetailComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
