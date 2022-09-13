@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Profile } from './types';
 
 @Injectable({
@@ -6,13 +7,15 @@ import { Profile } from './types';
 })
 export class GithubApiService {
 
+  apiPrefix: string = environment.API_BASE;
+
   searchUsersCache: Record<string, Profile[]> = {};
   listUsersCache: Profile[] = [];
 
   async listUsers(): Promise<Profile[]> {
     if (this.listUsersCache.length > 0) return this.listUsersCache;
 
-    const response = await fetch('https://api.github.com/users')
+    const response = await fetch(`${this.apiPrefix}/users`)
     const data: Profile[] = await response.json();
     this.listUsersCache = data;
     return data;
@@ -21,7 +24,7 @@ export class GithubApiService {
   async searchUsers(keyword: string): Promise<Profile[]> {
     if (keyword in this.searchUsersCache) return this.searchUsersCache[keyword];
 
-    const response = await fetch(`https://api.github.com/search/users?q=${keyword}`)
+    const response = await fetch(`${this.apiPrefix}/search/users?q=${keyword}`)
     const data: {items: Profile[]} = await response.json();
     this.searchUsersCache[keyword] = data.items
     return data.items;
