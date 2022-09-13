@@ -4,7 +4,7 @@
         <h4 class="card-title">{{ profile.login }}</h4>
         <div class="d-flex justify-content-between">
             <small>{{ profile.type }}</small>
-            <a [href]="profile.html_url" target="_blank" class="btn btn-outline-primary btn-sm">View</a>
+            <a [routerLink]="['./', profile.login]" class="btn btn-outline-primary btn-sm">View</a>
         </div>
     </div>
 </div>
