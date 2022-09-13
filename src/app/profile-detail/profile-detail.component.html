@@ -1,0 +1,20 @@
+<div class="card mb-3 p-3 rounded shadow" [ngClass]="{'border-danger text-danger': profileDetail.type == 'Organization'}"
+    *ngIf="profileDetail; else loading">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img [src]="profileDetail.avatar_url" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">{{ profileDetail.name }} <small class="text-muted fs-4">({{ profileDetail.login }})</small></h3>
+                <div class="d-flex justify-content-between">
+                    <small>{{ profileDetail.type }}</small>
+                    <a [href]="profileDetail.html_url" target="_blank" class="btn btn-outline-primary btn-sm">View Github</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <h1>Loading...</h1>
+</ng-template>
