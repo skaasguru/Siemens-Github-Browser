@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HighlightDirective } from './highlight.directive';
+import { ProfileListComponent } from './profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HighlightDirective } from './highlight.directive';
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
-    HighlightDirective
+    HighlightDirective,
+    ProfileListComponent
   ],
   imports: [
     BrowserModule,
