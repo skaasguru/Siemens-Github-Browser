@@ -12,6 +12,7 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
