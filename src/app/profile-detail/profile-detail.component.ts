@@ -12,15 +12,10 @@ export class ProfileDetailComponent implements OnInit {
 
   profileDetail: ProfileDetail | undefined;
 
-  constructor(
-    private api: GithubApiService,
-    private activatedRoute: ActivatedRoute,
-  ) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const login: string = this.activatedRoute.snapshot.paramMap.get('login') || '';
-    this.api.getUserDetails(login)
-      .then(profileDetail => this.profileDetail = profileDetail)
-      .catch(console.error);
+    this.profileDetail = this.activatedRoute.snapshot.data['profileDetail']
+    console.log('Loaded ' + this.profileDetail?.login);
   }
 }
