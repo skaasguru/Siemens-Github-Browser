@@ -11,6 +11,7 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SettingsComponent } from './settings/settings.component';
     ProfileListComponent,
     ProfileDetailComponent,
     PageNotFoundComponent,
-    SettingsComponent
+    SettingsComponent,
+    DashboardLayoutComponent,
   ],
   imports: [
     BrowserModule,
