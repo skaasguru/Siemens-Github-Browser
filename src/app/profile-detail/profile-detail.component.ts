@@ -18,9 +18,6 @@ export class ProfileDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const login: string = this.activatedRoute.snapshot.paramMap.get('login') || '';
-    this.api.getUserDetails(login)
-      .then(profileDetail => this.profileDetail = profileDetail)
-      .catch(console.error);
+    this.profileDetail = this.activatedRoute.snapshot.data['profileDetail'];
   }
 }

@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-3">
+        <div class="card shadow rounded">
+            <div class="card-body">
+
+                <form [formGroup]="contactGroup" (ngSubmit)="onSubmit()" >
+                    <label for="name">Name</label>
+                    <input formControlName="name" type="text" name="name" class="form-control" placeholder="Kalki">
+                    <div class="alert alert-danger"
+                        *ngIf="contactGroup.controls.name.invalid
+                            && (contactGroup.controls.name.touched || contactGroup.controls.name.dirty)">
+                        <p *ngIf="contactGroup.controls.name.errors?.['required']">
+                            Name is required.
+                        </p>
+                    </div>
+                    
+                    <div formArrayName="contacts">
+                        <h4>Contacts</h4>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-sm btn-outline-primary my-2" (click)="addContact()">Add</button>
+                        </div>
+                        
+                        <div class="shadow border rounded p-3 my-2"
+                        *ngFor="let contact of contactGroup.controls.contacts.controls; index as i"
+                        [formGroup]="contact">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6>Contact #{{ i + 1 }}</h6>
+                                <button type="button" class="btn btn-sm btn-danger my-2" (click)="deleteContact(i)">Delete</button>
+                            </div>
+
+                            <label for="email">Email</label>
+                            <input formControlName="email" type="email" name="email" class="form-control" placeholder="kalki@skaas.guru">
+                            <div class="alert alert-danger"
+                                *ngIf="contact.controls.email.invalid
+                                    && (contact.controls.email.touched || contact.controls.email.dirty)">
+                                <p *ngIf="contact.controls.email.errors?.['required']">
+                                    Email is required.
+                                </p>
+                                <p *ngIf="contact.controls.email.errors?.['email']">
+                                    Not a valid Email ID.
+                                </p>
+                            </div>
+                            
+                            <label for="phone">Phone</label>
+                            <input formControlName="phone" type="tel" name="phone" class="form-control" placeholder="+919629199923">
+                            <div class="alert alert-danger"
+                                *ngIf="contact.controls.phone.invalid
+                                    && (contact.controls.phone.touched || contact.controls.phone.dirty)">
+                                <p *ngIf="contact.controls.phone.errors?.['required']">
+                                    Phone is required.
+                                </p>
+                                <p *ngIf="contact.controls.phone.errors?.['phone']">
+                                    Not a valid Phone number.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    
+                    <label for="message">Message</label>
+                    <textarea formControlName="message" name="message" rows="3" class="form-control" placeholder="Hi, Let's connect"></textarea>
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary" [disabled]="contactGroup.invalid">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

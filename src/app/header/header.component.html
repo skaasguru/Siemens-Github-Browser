@@ -5,13 +5,16 @@
                 <span class="fs-4">GitHub Browser</span>
             </a>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" (submit)="$event.preventDefault(); commonService.searchKeywordEmitter.emit(searchInput.value)">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-
+            
+            lg-3" role="search" (submit)="$event.preventDefault()">
                 <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search" #searchInput>
+                    aria-label="Search" [formControl]="keyword" name="search">
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-warning" (click)="commonService.searchKeywordEmitter.emit(searchInput.value)">Search</button>
+                <!-- <button type="button" class="btn btn-warning" (click)="commonService.searchKeywordEmitter.emit(keyword)">Search</button> -->
+                <a routerLink="settings" class="btn btn-outline-primary ms-2">Settings</a>
             </div>
         </div>
     </div>

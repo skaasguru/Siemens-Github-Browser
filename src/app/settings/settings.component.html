@@ -1,0 +1,19 @@
+
+<h1>{{ mystring }}</h1>
+<h1>{{ mystring | lowercase }}</h1>
+<h1>{{ mystring | uppercase }}</h1>
+<h1>{{ mystring | titlecase }}</h1>
+<hr>
+<h1>{{ mydate }}</h1>
+<h1>{{ mydate | date }}</h1>
+<h1>{{ mydate | date:'short' }}</h1>
+<hr>
+<h1>{{ myamount }}</h1>
+<h1>{{ myamount | currency }}</h1>
+<h1>{{ myamount | currency:'INR' }}</h1>
+<h1>{{ myamount | currency:'CAD' }}</h1>
+<hr>
+<h1>{{ 'Hello there, Good evening, we are discussing pipes' }}</h1>
+<h1>{{ 'Hello there, Good evening, we are discussing pipes' | truncate }}</h1>
+<h1>{{ 'Hello there, Good evening, we are discussing pipes' | truncate:15 }}</h1>
+<h1>{{ 'Hello there, Good evening, we are discussing pipes' | truncate:20 }}</h1>

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Profile, ProfileDetail } from './types';
 
@@ -13,30 +15,34 @@ export class GithubApiService {
   private listUsersCache: Profile[] = [];
   private getUserDetailsCache: Record<string, ProfileDetail> = {};
 
-  async listUsers(): Promise<Profile[]> {
-    if (this.listUsersCache.length > 0) return this.listUsersCache;
+  constructor(private http: HttpClient) {}
 
-    const response = await fetch(`${this.apiPrefix}/users`)
-    const data: Profile[] = await response.json();
-    this.listUsersCache = data;
-    return data;
+  listUsers(): Observable<Profile[]> {
+    if (this.listUsersCache.length > 0) return of(this.listUsersCache);
+    return this.http.get<Profile[]>(`${this.apiPrefix}/users`)
+      .pipe(
+        tap(profile => this.listUsersCache = profile)
+      );
   }
 
-  async searchUsers(keyword: string): Promise<Profile[]> {
-    if (keyword in this.searchUsersCache) return this.searchUsersCache[keyword];
+  searchUsers(keyword: string): Observable<Profile[]> {
+    if (keyword in this.searchUsersCache) return of(this.searchUsersCache[keyword]);
 
-    const response = await fetch(`${this.apiPrefix}/search/users?q=${keyword}`)
-    const data: {items: Profile[]} = await response.json();
-    this.searchUsersCache[keyword] = data.items
-    return data.items;
+    return this.http.get<{items: Profile[]}>(`${this.apiPrefix}/search/users`, {
+      params: {
+        q: keyword
+      }
+    }).pipe(
+      map(x => x.items),
+      tap(profile => this.searchUsersCache[keyword] = profile)
+    );
   }
 
-  async getUserDetails(login: string): Promise<ProfileDetail> {
-    if (login in this.getUserDetailsCache) return this.getUserDetailsCache[login];
-    
-    const response = await fetch(`${this.apiPrefix}/users/${login}`)
-    const data: ProfileDetail = await response.json();
-    this.getUserDetailsCache[login] = data
-    return data;
+  getUserDetails(login: string): Observable<ProfileDetail> {
+    if (login in this.getUserDetailsCache) return of(this.getUserDetailsCache[login]);
+    return this.http.get<ProfileDetail>(`${this.apiPrefix}/users/${login}`)
+      .pipe(
+        tap(profileDetail => this.getUserDetailsCache[login] = profileDetail)
+      );
   }
 }

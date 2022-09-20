@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CommonService } from '../common.service';
 import { GithubApiService } from '../github-api.service';
 import { Profile } from '../types';
@@ -34,16 +34,17 @@ export class ProfileListComponent implements OnInit, OnDestroy {
   }
 
   getUsers(keyword: string): void {
-    let usersPromise: Promise<Profile[]>;
+    let users$: Observable<Profile[]>;
     if (keyword) {
-      usersPromise = this.api.searchUsers(keyword);
+      users$ = this.api.searchUsers(keyword);
     } else {
-      usersPromise = this.api.listUsers();
+      users$ = this.api.listUsers();
     }
 
-    usersPromise
-      .then(profiles => this.profiles = profiles)
-      .catch(console.error);
+    users$.subscribe({
+      next: profiles => this.profiles = profiles,
+      error: err => console.error(err)
+    });
   }
 
   updateQueryParam(queryParams: Record<string, string>) {
