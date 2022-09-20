@@ -14,5 +14,9 @@ export class AuthService {
     }
     return this.token !== null;
   }
+
+  public getToken(): string | null {
+    return this.token ?? null;
+  }
   
 }
