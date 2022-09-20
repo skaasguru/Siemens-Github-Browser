@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { ContactComponent } from './contact.component';
 
@@ -8,7 +10,8 @@ describe('ContactComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContactComponent ]
+      declarations: [ ContactComponent ],
+      imports: [FormsModule, ReactiveFormsModule]
     })
     .compileComponents();
 
@@ -19,5 +22,11 @@ describe('ContactComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('calling addContact() should increase formArray length by 1', () => {
+    const initialLength = component.contactGroup.controls.contacts.length;
+    component.addContact();
+    expect(component.contactGroup.controls.contacts.length).toBe(initialLength + 1);
   });
 });

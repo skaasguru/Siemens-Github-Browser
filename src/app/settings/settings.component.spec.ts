@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TruncatePipe } from '../truncate.pipe';
 
 import { SettingsComponent } from './settings.component';
 
@@ -8,7 +9,7 @@ describe('SettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
+      declarations: [ SettingsComponent, TruncatePipe ]
     })
     .compileComponents();
 
