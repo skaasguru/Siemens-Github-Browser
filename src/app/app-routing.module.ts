@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'profile/:login', component: ProfileDetailComponent, resolve: { profileDetail: ProfileDetailResolver}},
   { path: 'settings', component: SettingsComponent, canActivate: [AuthenticationGuard]},
   { path: 'contact', component: ContactComponent},
+  { path: 'billing', loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule) },
+  { path: 'accounts', loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsModule) },
   { path: '**', component: PageNotFoundComponent}
 ];
 
